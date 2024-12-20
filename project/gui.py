@@ -1,4 +1,3 @@
-import function
 import FreeSimpleGUI as si
 
 label = si.Text("Type a to-do")
