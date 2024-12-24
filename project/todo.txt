@@ -1,12 +1,3 @@
+complete python
 hello
-already done eating
-attend the meeting
-need to buy a car
-need to visit kallai
-need to collect the car washer
-need to visit pagandai
-
-
-need to go velankanni
-hello
-attend the function
+need to eat my breakfast
