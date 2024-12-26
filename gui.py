@@ -2,12 +2,15 @@ import FreeSimpleGUI as si
 import function
 import time
 
+
+
+
 si.theme("black")
 time_label = si.Text('', key="clock")
 label = si.Text("Type a to-do")
 input_box = si.InputText(tooltip="Enter todo", key='todo')
 add_button = si.Button("Add")
-list_box = si.Listbox(values=function.get_todo() , key='todos', enable_events=True, size=[45, 10])
+list_box = si.Listbox(values=function.get_todo(), key='todos', enable_events=True, size=[45, 10])
 edit_button = si.Button("Edit")
 complete_button = si.Button("Complete")
 Exit_button = si.Button("Exit")
@@ -20,7 +23,11 @@ window = si.Window('My To-Do App', layout=[[time_label],
 
 while True:
     event, values = window.read(timeout=200)
-    window['clock'].update(value= time.strftime("%d-%m-%y %H:%M:%S"))
+
+    if event in (si.WIN_CLOSED, "Exit"):
+        break
+
+    window["clock"].update(value= time.strftime("%d-%m-%y %H:%M:%S"))
 
     match event:
         case "Add":
@@ -51,15 +58,14 @@ while True:
                 function.write_todo(todos)
                 window['todos'].update(values = todos)
                 window['todo'].update(value = '')
+
             except IndexError:
                 si.popup("please select an item", font=("Helbvetica", 17))
-        case "Exit":
-            break
 
-        case "todos":
+
+        case 'todos':
             window['todo'].update(value=values['todos'][0])
 
-        case si.WINDOW_CLOSED:
-            break
+
 
 window.close()
